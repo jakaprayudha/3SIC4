@@ -1,50 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:apps3sic4/navbar.dart';
+import 'login_page.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final routes = <String, WidgetBuilder>{
+    LoginPage.tag: (context) => LoginPage(),
+  };
   @override
   Widget build(BuildContext context) {
+    // TODO: implement build
     return MaterialApp(
-      home: Scaffold(
-        body: LayoutNavbar(),
+      title: 'Library App',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.lightBlue,
+        fontFamily: 'Nunito',
       ),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text(
-          'Custom Fonts',
-          style: TextStyle(fontStyle: FontStyle.italic),
-        ),
-      ),
-      body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-        child: const Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              'Home',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            Text('Aplikasi My Apps TGD'),
-          ],
-        ),
-      ),
+      home: LoginPage(),
+      routes: routes,
     );
   }
 }

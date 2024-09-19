@@ -1,29 +1,55 @@
 import 'package:flutter/material.dart';
 
-class LayoutNavbar extends StatefulWidget {
+class LayoutNavigationBar extends StatefulWidget {
   @override
-  _layoutNavigation createState() => _layoutNavigation();
+  _LayoutNavigationBarState createState() => _LayoutNavigationBarState();
 }
 
-class _layoutNavigation extends State<LayoutNavbar> {
+class _LayoutNavigationBarState extends State<LayoutNavigationBar> {
+  int _currentIndex = 0; // Menyimpan indeks tab yang aktif
+
   @override
- BottomNavigationBar: BottomNavigationBar(
-  currentIndex : 0
-  items :[
-    BottomNavigationBarItem(
-      icon : new Icon (Icons.dashboard),
-      label : 'Dashboard'
-    ),
-    BottomNavigationBarItem(
-      icon : new Icon (Icons.user),
-      label : 'Profile'
-    ),
-    BottomNavigationBarItem(
-      icon : new Icon (Icons.grid),
-      label : 'Transaction'
-    ),
-  ],
- ),
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: _getSelectedWidget(), // Menampilkan halaman sesuai pilihan
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index; // Mengubah indeks saat user memilih tab
+          });
+        },
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.dashboard),
+            label: 'Ini Menu 1',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.dashboard),
+            label: 'Ini Menu 2',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.dashboard),
+            label: 'Ini Menu 3',
+          ),
+        ],
+      ),
+    );
+  }
 
+  // Fungsi untuk mengembalikan widget sesuai dengan tab yang dipilih
+  Widget _getSelectedWidget() {
+    switch (_currentIndex) {
+      case 0:
+        return Text('Halaman Menu 1');
+      case 1:
+        return Text('Halaman Menu 2');
+      case 2:
+        return Text('Halaman Menu 3');
+      default:
+        return Text('Halaman Menu 1');
+    }
+  }
 }
-
